@@ -84,6 +84,51 @@ function esgi_customize_register($wp_customize)
         'label' => __('Couleur principale', 'ESGI'),
         'section' => 'esgi_section',
     ]));
+
+    // ajout d'un setting
+    $wp_customize->add_setting('is_dark', [
+        'type' => 'theme_mod', // or 'option'
+        'capability' => 'edit_theme_options',
+        'theme_supports' => '', // Rarely needed.
+        'default' => '',
+        'transport' => 'refresh', // or postMessage
+        'sanitize_callback' => 'esgi_bool_sanitize',
+        'sanitize_js_callback' => '', // Basically to_json.
+    ]);
+
+    // Ajout d'un control
+    $wp_customize->add_control('is_dark', [
+        'type' => 'checkbox',
+        'priority' => 1, // Within the section.
+        'section' => 'esgi_section', // Required, core or custom.
+        'label' => __('Dark mode'),
+        'description' => __('Black is beautiful :)'),
+    ]);
+
+    // ajout d'un setting
+    $wp_customize->add_setting('has_sidebar', [
+        'type' => 'theme_mod', // or 'option'
+        'capability' => 'edit_theme_options',
+        'theme_supports' => '', // Rarely needed.
+        'default' => '',
+        'transport' => 'refresh', // or postMessage
+        'sanitize_callback' => 'esgi_bool_sanitize',
+        'sanitize_js_callback' => '', // Basically to_json.
+    ]);
+
+    // Ajout d'un control
+    $wp_customize->add_control('has_sidebar', [
+        'type' => 'checkbox',
+        'priority' => 1, // Within the section.
+        'section' => 'esgi_section', // Required, core or custom.
+        'label' => __('Afficher la sidebar'),
+        'description' => __('(Uniquement sur les articles)'),
+    ]);
+}
+
+function esgi_bool_sanitize($value)
+{
+    return is_bool($value) ? $value : false;
 }
 
 
@@ -96,4 +141,14 @@ function esgi_custom_style()
                 --main-color:' . get_theme_mod('main_color') . ';
             }
             </style>';
+}
+
+
+add_filter('body_class', 'esgi_body_class', 999, 1);
+function esgi_body_class($classes)
+{
+    if (get_theme_mod('is_dark')) {
+        $classes[] = 'dark';
+    }
+    return $classes;
 }

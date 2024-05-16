@@ -15,10 +15,17 @@
                     </div>
                 </div>
                 <div class="post-content">
-                    <?= get_the_post_thumbnail($post, 'large'); ?>
+                    <div class="post-thumbnail">
+                        <?= get_the_post_thumbnail($post, 'large'); ?>
+                    </div>
                     <?= the_content() ?>
                 </div>
             </div>
+            <?php
+            if (get_theme_mod('has_sidebar')) {
+                get_sidebar();
+            }
+            ?>
         </div>
     </div>
 </main>
