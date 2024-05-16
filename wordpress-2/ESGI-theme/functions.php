@@ -52,3 +52,48 @@ function esgi_getIcon($name)
     return $$name;  // nom de variable dynamique
 
 }
+
+
+// Customizer du thème
+add_action('customize_register', 'esgi_customize_register');
+function esgi_customize_register($wp_customize)
+{
+    // ajout d'une section
+    $wp_customize->add_section('esgi_section', [
+        'title' => __('Paramètres ESGI'),
+        'description' => __('Customisation du thème !'),
+        'panel' => '', // Not typically needed.
+        'priority' => 0,
+        'capability' => 'edit_theme_options',
+        'theme_supports' => '', // Rarely needed.
+    ]);
+
+    // ajout d'un setting
+    $wp_customize->add_setting('main_color', [
+        'type' => 'theme_mod', // or 'option'
+        'capability' => 'edit_theme_options',
+        'theme_supports' => '', // Rarely needed.
+        'default' => '',
+        'transport' => 'refresh', // or postMessage
+        'sanitize_callback' => 'sanitize_hex_color',
+        'sanitize_js_callback' => '', // Basically to_json.
+    ]);
+
+    // ajout d'un controle
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'main_color', [
+        'label' => __('Couleur principale', 'ESGI'),
+        'section' => 'esgi_section',
+    ]));
+}
+
+
+// Application des styles du customizer
+add_action('wp_head', 'esgi_custom_style');
+function esgi_custom_style()
+{
+    echo '<style>
+            :root{
+                --main-color:' . get_theme_mod('main_color') . ';
+            }
+            </style>';
+}
