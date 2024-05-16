@@ -1,0 +1,35 @@
+:root {
+	--main-color: #3f51b5;
+	--white: #fff;
+	--black: #000;
+	--grey: #555;
+
+	--bg-color: var(--white);
+	--text-color: var(--black);
+}
+
+body {
+	font-family: $font2;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	&.dark {
+		--bg-color: var(--black);
+		--text-color: var(--white);
+	}
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+svg {
+	path {
+		fill: currentColor;
+	}
+	&:hover {
+		path {
+			fill: var(--main-color);
+		}
+	}
+}

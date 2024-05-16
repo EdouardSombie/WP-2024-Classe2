@@ -1,0 +1,29 @@
+.identityCard {
+	@include flexbox(column, nowrap, flex-start, center, #{rem(30)});
+	margin-top: rem(80);
+	img {
+		display: block;
+		width: rem(102);
+		height: rem(102);
+		border-radius: 9999px;
+		object-fit: cover;
+		object-position: center;
+	}
+	h1 {
+		@include heading1;
+	}
+	h2 {
+		@include heading4;
+	}
+	h1,
+	h2 {
+		margin: 0;
+	}
+	ul {
+		@include resetList;
+		@include flexbox(row, nowrap, center, center, #{rem(25)});
+		a {
+			@include resetLink;
+		}
+	}
+}

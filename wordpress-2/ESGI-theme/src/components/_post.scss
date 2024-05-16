@@ -1,0 +1,35 @@
+.post-title {
+	@include heading1;
+	text-align: center;
+	margin: 2em 0 1em;
+}
+
+.post-content {
+	@include heading4;
+}
+
+.post-meta {
+	@include heading6;
+	@include flexbox(row, nowrap, center, center, #{rem(50)});
+	margin: rem(45) 0;
+}
+
+.post-author {
+	@include flexbox(row, nowrap, flex-start, center, #{rem(12)});
+	img {
+		display: block;
+		height: rem(32);
+		width: rem(32);
+		border-radius: 9999px;
+	}
+}
+
+.post-thumbnail {
+	img {
+		width: 100%;
+		aspect-ratio: 555 / 300;
+		object-fit: cover;
+		object-position: center;
+		margin-bottom: rem(30);
+	}
+}

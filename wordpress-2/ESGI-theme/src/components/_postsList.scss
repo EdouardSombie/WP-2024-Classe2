@@ -1,0 +1,21 @@
+.postsList {
+	@include resetList;
+	padding: rem(60) 0;
+	li {
+		margin-bottom: rem(20);
+		a {
+			@include resetLink;
+			@include heading3;
+			@include flexbox(row, nowrap, space-between, flex-start, #{rem(20)});
+			time {
+				@include heading6;
+				color: var(--grey);
+			}
+		}
+		&:hover {
+			a {
+				color: var(--main-color);
+			}
+		}
+	}
+}

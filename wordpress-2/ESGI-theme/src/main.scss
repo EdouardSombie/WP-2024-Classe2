@@ -1,18 +1,29 @@
-/*
-Theme Name: ESGI classe2
-Theme URI: https://www.esgi.fr
-Author: the ESGI team
-Author URI: https://www.esgi.fr
-Description:Thème classic pour un exercice :)
-Requires at least: 5.0
-Tested up to: 5.4
-Requires PHP: 7.0
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: ESGI
-This theme, like WordPress, is licensed under the GPL.
-Use it to make something cool, have fun, and share what you've learned with others.
-*/
+/**
+ * Theme Name:        ESGI
+ * Theme URI:         https://www.esgi.fr
+ * Description:       Thème d'exercice :)
+ * Version:           1.0.0
+ * Author:            ESGI Team
+ * Author URI:        https://example.com
+ * Tags:              minimalist
+ * Text Domain:       ESGI
+ * Domain Path:       /assets/lang
+ * Tested up to:      6.4
+ * Requires at least: 6.2
+ * Requires PHP:      7.4
+ * License:           GNU General Public License v2.0 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ */
 
 @import "vendor/modern-normalize";
 @import "vendor/bootstrap-grid";
+
+@import "partials/functions";
+@import "partials/fonts";
+@import "partials/globals";
+
+@import "components/header";
+@import "components/footer";
+@import "components/identityCard";
+@import "components/post";
+@import "components/postsList";

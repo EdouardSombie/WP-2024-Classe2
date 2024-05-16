@@ -1,0 +1,23 @@
+@function rem($pxVal) {
+	@return calc($pxVal / 16) * 1rem;
+}
+
+@mixin resetList {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+@mixin resetLink {
+	color: inherit;
+	text-decoration: none;
+}
+
+@mixin flexbox($direction, $wrap, $justify, $align, $gap) {
+	display: flex;
+	flex-direction: $direction;
+	flex-wrap: $wrap;
+	justify-content: $justify;
+	align-items: $align;
+	gap: $gap;
+}
