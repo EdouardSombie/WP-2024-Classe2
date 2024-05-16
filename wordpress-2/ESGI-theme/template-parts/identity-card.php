@@ -4,7 +4,18 @@
     <h2><?= get_bloginfo('description') ?></h2>
     <footer>
         <ul>
-            <li>...</li>
+            <li>
+                <a href="#"><?= esgi_getIcon('twitter') ?></a>
+            </li>
+            <li>
+                <a href="#"><?= esgi_getIcon('facebook') ?></a>
+            </li>
+            <li>
+                <a href="#"><?= esgi_getIcon('google') ?></a>
+            </li>
+            <li>
+                <a href="#"><?= esgi_getIcon('linkedin') ?></a>
+            </li>
         </ul>
     </footer>
 </article>
