@@ -11,6 +11,14 @@
     <?php wp_body_open(); ?>
     <header id="site-header">
         <div class="container">
-
+            <?php
+            if (has_nav_menu('primary_menu')) {
+                wp_nav_menu([
+                    'menu' => 'primary_menu',
+                    'container' => 'nav',
+                    'container_class' => 'main-menu'
+                ]);
+            }
+            ?>
         </div>
     </header>
