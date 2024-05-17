@@ -20,10 +20,10 @@ window.onload = () => {
 };
 
 function fetchPage(page) {
-	// fetch vers l'url admin-ajax...// avec des param GET action et page
+	// fetch vers l'url admin-ajax...// avec des param GET action, page et base (de l'URL)
 	fetch(esgi.ajaxURL + "?action=load_posts&page=" + page).then((response) => {
 		response.text().then((text) => {
-			console.log(text);
+			document.getElementById("list-wrapper").innerHTML = text;
 		});
 	});
 }

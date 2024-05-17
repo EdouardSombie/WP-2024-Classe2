@@ -169,14 +169,12 @@ add_action('wp_ajax_nopriv_load_posts', 'ajax_load_posts');
 function ajax_load_posts()
 {
     $page = $_GET['page'];
-    $action = $_GET['action'];
 
     // Ouverture du buffer
     ob_start();
     // inclusion posts-list
-
+    include('template-parts/posts-list.php');
     // echo le contenu du buffer
-
-    // echo $page . ' - ' . $action;
+    echo ob_get_clean();
     wp_die();
 }
