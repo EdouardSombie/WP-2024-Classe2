@@ -1,4 +1,8 @@
 window.onload = () => {
+	ajaxifyPaginateLinks();
+};
+
+function ajaxifyPaginateLinks() {
 	document.querySelectorAll(".page-numbers").forEach((elem) => {
 		elem.onclick = (e) => {
 			e.preventDefault(); // annule le comportement par défaut
@@ -17,13 +21,21 @@ window.onload = () => {
 			fetchPage(target);
 		};
 	});
-};
+}
 
 function fetchPage(page) {
 	// fetch vers l'url admin-ajax...// avec des param GET action, page et base (de l'URL)
-	fetch(esgi.ajaxURL + "?action=load_posts&page=" + page).then((response) => {
+
+	fetch(
+		esgi.ajaxURL +
+			"?action=load_posts&page=" +
+			page +
+			"&base=" +
+			esgi.basePagination
+	).then((response) => {
 		response.text().then((text) => {
 			document.getElementById("list-wrapper").innerHTML = text;
+			ajaxifyPaginateLinks();
 		});
 	});
 }

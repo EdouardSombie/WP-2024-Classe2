@@ -9,8 +9,12 @@ function esgi_enqueue_assets()
     wp_enqueue_script('main', get_template_directory_uri() . '/assets/main.js',);
 
     // Injection de variables dans js
+    $big = 999999999; // need an unlikely integer
+    $base = str_replace($big, '%#%', esc_url(get_pagenum_link($big)));
+
     $vars = [
-        'ajaxURL' => admin_url('admin-ajax.php')
+        'ajaxURL' => admin_url('admin-ajax.php'),
+        'basePagination' => $base
     ];
 
     wp_localize_script('main', 'esgi', $vars);
@@ -169,7 +173,7 @@ add_action('wp_ajax_nopriv_load_posts', 'ajax_load_posts');
 function ajax_load_posts()
 {
     $page = $_GET['page'];
-
+    $base = $_GET['base'];
     // Ouverture du buffer
     ob_start();
     // inclusion posts-list

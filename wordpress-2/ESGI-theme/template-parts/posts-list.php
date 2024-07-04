@@ -4,6 +4,11 @@ if (!isset($page)) {
 } else {
     $paged = $page; // prise en compte du param envoyé par le fetch
 }
+$big = 999999999; // need an unlikely integer
+if (!isset($base)) {
+    $base = str_replace($big, '%#%', esc_url(get_pagenum_link($big)));
+}
+
 $args = [
     // 'posts_per_page' => 1,
     'paged' => $paged,
@@ -18,7 +23,7 @@ if ($the_query->have_posts()) {
     echo '<ul class="postsList">';
     while ($the_query->have_posts()) {
         $the_query->the_post(); // Instanciation du WP_Post
-        $post = get_post();
+        $post = get_post(); // car la var $post n'est pas créée si liste appelée par un fetch
 ?>
         <li>
             <a href="<?= get_permalink($p) ?>">
@@ -30,10 +35,10 @@ if ($the_query->have_posts()) {
     }
     echo '</ul>';
 
-    $big = 999999999; // need an unlikely integer
+
 
     echo paginate_links([
-        'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+        'base' => $base,
         'format' => '?paged=%#%',
         'current' => max(1, $paged),
         'total' => $the_query->max_num_pages
